@@ -1,0 +1,99 @@
+@startuml
+
+class Game {
+long GameId
+string Title
+string Genre
+}
+
+class Platform {
+long PlatformId
+string Name
+}
+
+class GameRelease {
+long GameReleaseId
+long GameId
+Game Game
+long PlatformId
+Platform Platform
+DateTime ReleaseDate
+}
+
+class People {
+long PeopleId
+string FirstName
+string LastName
+}
+
+class User {
+string Username
+string Email
+List<UserGame> UserGames
+}
+
+class UserGame {
+long UserGameId
+long UserId
+User User
+long GameReleaseId
+GameRelease GameRelease
+bool IsWish
+}
+
+class GameReleasesController {
+GameTrackerContext _context
+GetGameRelease()
+}
+
+class UserGamesController {
+GameTrackerContext _context
+GetUserGames(string list, long id)
+PutUser(long id, UserGamePutRequest request)
+PostUser(UserGamePostRequest request)
+DeleteUserGame(long id)
+GetBacklogGames(User user)
+GetWishlistGames(User user)
+UserGameExists(long id)
+}
+
+class UsersController {
+GameTrackerContext _context
+GetUser()
+PutUser(long id, User user)
+PostUser(User user)
+DeleteUser(long id)
+UserExists(long id)
+}
+
+class GameTrackerContext {
+DbSet People
+DbSet User
+DbSet Game
+DbSet Platform
+DbSet GameRelease
+DbSet UserGame
+OnModelCreating(ModelBuilder modelBuilder)
+}
+
+class DateHelper {
+_instance
+getInstance()
+checkBeforeEqualsToday(DateTime checkDate)
+checkBeforeToday(DateTime checkDate)
+}
+
+Game "1" -- "1..*" GameRelease
+Platform "1" -- "1..*" GameRelease
+People <|-- User
+User "1" -- "1..*" UserGame
+GameRelease "1" -- "1..*" UserGame
+User <-- UserGamesController
+User <-- UsersController
+GameRelease <-- GameReleasesController
+UserGame <-- UserGamesController
+GameTrackerContext <-- UsersController
+GameTrackerContext <-- GameReleasesController
+GameTrackerContext <-- UserGamesController
+DateHelper <-- UserGamesController
+@enduml

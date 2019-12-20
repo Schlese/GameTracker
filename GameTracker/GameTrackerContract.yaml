@@ -1,0 +1,163 @@
+openapi: 3.0.1
+info:
+  title: Game Tracker
+  description: API description in Markdown.
+  version: 1.0.0
+servers:
+  - url: 'https://api.example.com'
+paths:
+  /api/Users:
+    get:
+      tags:
+        - Users
+      summary: Returns a list of users.
+      responses:
+        '200':
+          description: OK
+    post:
+      tags:
+        - Users
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Created
+  /api/Users/{userId}:
+    get:
+      tags:
+        - Users
+      summary: Returns a user by ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type : integer
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+        - Users
+      summary: update user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type : integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Created
+    delete:
+      tags:
+        - Users
+      summary: delete user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type : integer
+      responses:
+        '200':
+          description: OK
+  /api/GameReleases:
+    get:
+      tags:
+        - GameReleases
+      summary: Returns a list of GameReleases.
+      responses:
+        '200':
+          description: OK
+  /api/UserGames/{id}:
+    get:
+      tags:
+        - UserGames
+      summary: Returns a list of UserGames.
+      description: Returns all games the user has in the specified list. One example would be /api/UserGames/5?list=backlog
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type : integer
+        - in: query
+          name: list
+          schema:
+            type: string
+          description: specifies which game list should be returned. The value should be wishlist or backlog.
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+        - UserGames
+      summary: update user game
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type : integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserGamePutRequest'
+      responses:
+        '200':
+          description: OK
+  /api/UserGames:
+    post:
+      tags:
+        - UserGames
+      summary: Creating a new user game.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserGamePostRequest'
+      responses:
+        '201':
+          description: Created
+components:
+  schemas:
+    UserGamePutRequest:
+      type: object
+      properties:
+        isWish:
+          type: boolean
+    UserGamePostRequest:
+      type: object
+      properties:
+        UserId:
+          type: number
+        GameReleaseId:
+          type: number
+        isWish:
+          type: boolean
+    User:
+      type: object
+      properties:
+        firstname:
+          type: string
+        lastname:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
