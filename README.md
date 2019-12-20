@@ -1,6 +1,8 @@
 # GameTracker
 C# ASP .Net Core Projekt für Prog4
 
+Das Projekt ist auch auf [Github](https://github.com/Schlese/GameTracker) zu finden.
+
 Dieses Projekt bietet seinen Benutzer die Möglichkeit Spiele zu einer Tracking List hinzuzufügen. Hierbei gibt es aktuell 2 verschiedene Listen:
 * Backlog: Spiele in dieser Liste werden aktuell gerade von dem Benutzer gespielt
 * Wishlist: Diese Liste repräsentiert eine Wunschliste von Spielen die der Benutzer gerne in Zukunft spielen möchte.
