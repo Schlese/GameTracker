@@ -28,7 +28,7 @@ docker-compose up
 ```
 
 ## OpenApi Contract
-Die Beschreibung der REST Api Endpoints ist in dem [GameTrackerContract.yaml](http://github.com) File zu finden.
+Die Beschreibung der REST Api Endpoints ist in dem [GameTrackerContract.yaml](./GameTracker/GameTrackerContract.yaml) File zu finden.
 Für eine graphishe Darstellung kann der Inhalt einfach in den Swagger Editor kopiert werden (http://editor.swagger.io/).
 
 ## Klassendiagramm
