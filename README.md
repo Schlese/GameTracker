@@ -32,4 +32,4 @@ Die Beschreibung der REST Api Endpoints ist in dem GameTrackerContract.yaml File
 Für eine graphishe Darstellung kann der Inhalt einfach in den Swagger Editor kopiert werden (http://editor.swagger.io/).
 
 ## Klassendiagramm
-![GameTrackerKlassendiagramm](https://octodex.github.com/images/yaktocat.png)
+![GameTrackerKlassendiagramm](./GameTrackerUML.png)
